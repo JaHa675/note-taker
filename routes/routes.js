@@ -21,14 +21,12 @@ routes.post("/notes", (req, res) => {
     text: req.body.text,
     id: uuidv4(),
   };
-  const oldNotes = JSON.parse(fs.readFileSync("db/db.json"));
-  allNotes.push(newNote);
-  fs.writeFileSync("db/db.json", JSON.stringify(oldNotes, null, 2));
-  console.log(allNotes);
-  res.json(allNotes);
+  const oldNotes = JSON.parse(fs.readFileSync("./db/db.json"));
+  oldNotes.push(newNote);
+  fs.writeFileSync("./db/db.json", JSON.stringify(oldNotes, null, 2));
+  console.log(oldNotes);
+  res.json(oldNotes);
 });
-
-
 
 
 module.exports = routes;
